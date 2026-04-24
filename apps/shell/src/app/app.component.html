@@ -1,0 +1,41 @@
+@if (authService.isAuthenticated()) {
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" routerLink="/">
+        <span class="brand-mark">ERP</span>
+        <span>
+          <strong>Northwind Works</strong>
+          <small>Demo ERP</small>
+        </span>
+      </a>
+
+      <nav class="nav-list">
+        @for (item of navItems; track item.routePath) {
+          <a
+            class="nav-link"
+            [routerLink]="item.routePath"
+            routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{ exact: item.routePath === '/' }"
+          >
+            <span class="nav-icon">{{ item.icon }}</span>
+            {{ item.label }}
+          </a>
+        }
+      </nav>
+
+      <section class="user-panel" aria-label="Signed in user">
+        <div>
+          <span>{{ authService.user()?.displayName }}</span>
+          <small>{{ authService.user()?.role }}</small>
+        </div>
+        <button type="button" class="logout-button" (click)="logout()">Logout</button>
+      </section>
+    </aside>
+
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+} @else {
+  <router-outlet />
+}

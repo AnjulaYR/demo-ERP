@@ -1,0 +1,27 @@
+{
+  "color": {
+    "surface": {
+      "canvas": "{color.neutral.50}",
+      "panel": "{color.neutral.0}",
+      "raised": "{color.neutral.100}"
+    },
+    "text": {
+      "primary": "{color.neutral.950}",
+      "secondary": "{color.neutral.500}",
+      "inverse": "{color.neutral.0}"
+    },
+    "border": {
+      "subtle": "{color.neutral.100}",
+      "strong": "{color.neutral.500}"
+    },
+    "success": {
+      "subtle": "{color.success.100}",
+      "strong": "{color.success.700}"
+    },
+    "danger": {
+      "subtle": "{color.danger.100}",
+      "strong": "{color.danger.700}"
+    }
+  }
+}
+

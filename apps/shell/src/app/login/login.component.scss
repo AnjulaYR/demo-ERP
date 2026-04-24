@@ -1,0 +1,176 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(24rem, 0.9fr);
+  gap: clamp(var(--erp-space-5), 5vw, var(--erp-space-8));
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(var(--erp-space-5), 7vw, 6rem);
+  background:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--erp-color-accent-400) 34%, transparent), transparent 18rem),
+    radial-gradient(circle at 88% 80%, color-mix(in srgb, var(--erp-color-brand-600) 26%, transparent), transparent 24rem),
+    linear-gradient(135deg, var(--erp-color-surface-canvas), var(--erp-color-surface-raised));
+}
+
+.login-story {
+  position: relative;
+}
+
+.login-story::before {
+  content: '';
+  position: absolute;
+  inset: -3rem auto auto -2rem;
+  width: 8rem;
+  height: 8rem;
+  border: 1px solid color-mix(in srgb, var(--erp-color-brand-600) 40%, transparent);
+  border-radius: 50%;
+}
+
+.eyebrow {
+  color: var(--erp-color-brand-600);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--erp-color-text-primary);
+  font-size: clamp(3rem, 8vw, 6.6rem);
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+
+.login-story p:last-of-type {
+  max-width: 38rem;
+  color: var(--erp-color-text-secondary);
+  font-size: 1.16rem;
+  line-height: 1.7;
+}
+
+.auth-roadmap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--erp-space-2);
+  margin-top: var(--erp-space-6);
+}
+
+.auth-roadmap span {
+  border: 1px solid var(--erp-color-border-subtle);
+  border-radius: var(--erp-radius-pill);
+  background: color-mix(in srgb, var(--erp-color-surface-panel) 72%, transparent);
+  color: var(--erp-color-text-secondary);
+  font-weight: 800;
+  padding: var(--erp-space-2) var(--erp-space-3);
+}
+
+.login-card {
+  border: 1px solid color-mix(in srgb, var(--erp-color-border-subtle) 80%, white);
+  border-radius: calc(var(--erp-radius-xl) + 0.5rem);
+  background: color-mix(in srgb, var(--erp-color-surface-panel) 88%, transparent);
+  box-shadow: var(--erp-shadow-lg);
+  padding: clamp(var(--erp-space-5), 5vw, var(--erp-space-8));
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--erp-space-3);
+  margin-bottom: var(--erp-space-6);
+}
+
+.brand-mark {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-color-brand-900);
+  color: var(--erp-color-accent-400);
+  font-weight: 900;
+}
+
+.card-heading small {
+  display: block;
+  color: var(--erp-color-text-secondary);
+}
+
+form {
+  display: grid;
+  gap: var(--erp-space-4);
+}
+
+label {
+  display: grid;
+  gap: var(--erp-space-2);
+  color: var(--erp-color-text-secondary);
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--erp-color-border-subtle);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-surface-panel);
+  color: var(--erp-color-text-primary);
+  font: inherit;
+  padding: var(--erp-space-3) var(--erp-space-4);
+}
+
+input:focus {
+  border-color: var(--erp-color-brand-600);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--erp-color-brand-600) 16%, transparent);
+  outline: none;
+}
+
+button {
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-brand-600);
+  color: var(--erp-color-text-inverse);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: var(--erp-space-3) var(--erp-space-4);
+}
+
+button:hover,
+button:focus-visible {
+  background: var(--erp-color-brand-700);
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.error-message {
+  margin: 0;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-danger-subtle);
+  color: var(--erp-color-danger-strong);
+  font-weight: 800;
+  padding: var(--erp-space-3);
+}
+
+.demo-hint {
+  display: grid;
+  gap: var(--erp-space-2);
+  margin-top: var(--erp-space-5);
+  border-top: 1px solid var(--erp-color-border-subtle);
+  color: var(--erp-color-text-secondary);
+  padding-top: var(--erp-space-4);
+}
+
+.demo-hint strong {
+  color: var(--erp-color-text-primary);
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+}
+

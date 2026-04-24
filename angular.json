@@ -1,0 +1,360 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "libs",
+  "projects": {
+    "shell": {
+      "projectType": "application",
+      "root": "apps/shell",
+      "sourceRoot": "apps/shell/src",
+      "prefix": "erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {},
+          "configurations": {
+            "production": {
+              "target": "shell:esbuild:production"
+            },
+            "development": {
+              "target": "shell:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "shell:serve-original:development",
+            "rebuildDelay": 0,
+            "dev": true
+          }
+        },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apps/shell",
+            "index": "apps/shell/src/index.html",
+            "browser": "apps/shell/src/main.ts",
+            "polyfills": ["zone.js", "es-module-shims"],
+            "tsConfig": "apps/shell/tsconfig.app.json",
+            "assets": ["apps/shell/src/assets"],
+            "styles": ["libs/design-tokens/src/styles/tokens.css", "apps/shell/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "shell:esbuild:development",
+            "proxyConfig": "proxy.conf.json",
+            "port": 4200
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "shell:esbuild:production"
+            },
+            "development": {
+              "buildTarget": "shell:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    },
+    "customers": {
+      "projectType": "application",
+      "root": "apps/customers",
+      "sourceRoot": "apps/customers/src",
+      "prefix": "erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {},
+          "configurations": {
+            "production": {
+              "target": "customers:esbuild:production"
+            },
+            "development": {
+              "target": "customers:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "customers:serve-original:development",
+            "rebuildDelay": 0,
+            "dev": true
+          }
+        },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apps/customers",
+            "index": "apps/customers/src/index.html",
+            "browser": "apps/customers/src/main.ts",
+            "polyfills": ["zone.js", "es-module-shims"],
+            "tsConfig": "apps/customers/tsconfig.app.json",
+            "assets": ["apps/customers/src/assets"],
+            "styles": ["libs/design-tokens/src/styles/tokens.css", "apps/customers/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "customers:esbuild:development",
+            "proxyConfig": "proxy.conf.json",
+            "port": 4201
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "customers:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    },
+    "inventory": {
+      "projectType": "application",
+      "root": "apps/inventory",
+      "sourceRoot": "apps/inventory/src",
+      "prefix": "erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {},
+          "configurations": {
+            "production": {
+              "target": "inventory:esbuild:production"
+            },
+            "development": {
+              "target": "inventory:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "inventory:serve-original:development",
+            "rebuildDelay": 0,
+            "dev": true
+          }
+        },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apps/inventory",
+            "index": "apps/inventory/src/index.html",
+            "browser": "apps/inventory/src/main.ts",
+            "polyfills": ["zone.js", "es-module-shims"],
+            "tsConfig": "apps/inventory/tsconfig.app.json",
+            "assets": ["apps/inventory/src/assets"],
+            "styles": ["libs/design-tokens/src/styles/tokens.css", "apps/inventory/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "inventory:esbuild:development",
+            "proxyConfig": "proxy.conf.json",
+            "port": 4202
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "inventory:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    },
+    "sales": {
+      "projectType": "application",
+      "root": "apps/sales",
+      "sourceRoot": "apps/sales/src",
+      "prefix": "erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {},
+          "configurations": {
+            "production": {
+              "target": "sales:esbuild:production"
+            },
+            "development": {
+              "target": "sales:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "sales:serve-original:development",
+            "rebuildDelay": 0,
+            "dev": true
+          }
+        },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apps/sales",
+            "index": "apps/sales/src/index.html",
+            "browser": "apps/sales/src/main.ts",
+            "polyfills": ["zone.js", "es-module-shims"],
+            "tsConfig": "apps/sales/tsconfig.app.json",
+            "assets": ["apps/sales/src/assets"],
+            "styles": ["libs/design-tokens/src/styles/tokens.css", "apps/sales/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "sales:esbuild:development",
+            "proxyConfig": "proxy.conf.json",
+            "port": 4203
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "sales:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    },
+    "finance": {
+      "projectType": "application",
+      "root": "apps/finance",
+      "sourceRoot": "apps/finance/src",
+      "prefix": "erp",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {},
+          "configurations": {
+            "production": {
+              "target": "finance:esbuild:production"
+            },
+            "development": {
+              "target": "finance:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "finance:serve-original:development",
+            "rebuildDelay": 0,
+            "dev": true
+          }
+        },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apps/finance",
+            "index": "apps/finance/src/index.html",
+            "browser": "apps/finance/src/main.ts",
+            "polyfills": ["zone.js", "es-module-shims"],
+            "tsConfig": "apps/finance/tsconfig.app.json",
+            "assets": ["apps/finance/src/assets"],
+            "styles": ["libs/design-tokens/src/styles/tokens.css", "apps/finance/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "finance:esbuild:development",
+            "proxyConfig": "proxy.conf.json",
+            "port": 4204
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "finance:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

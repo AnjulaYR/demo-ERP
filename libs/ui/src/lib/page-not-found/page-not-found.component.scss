@@ -1,0 +1,71 @@
+.not-found {
+  position: relative;
+  display: grid;
+  min-height: min(42rem, calc(100vh - 8rem));
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--erp-radius-xl);
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--erp-color-accent-400) 36%, transparent), transparent 18rem),
+    radial-gradient(circle at 84% 76%, color-mix(in srgb, var(--erp-color-brand-600) 22%, transparent), transparent 22rem),
+    linear-gradient(135deg, var(--erp-color-surface-panel), var(--erp-color-surface-raised));
+  box-shadow: var(--erp-shadow-lg);
+  padding: var(--erp-space-6);
+}
+
+.not-found-code {
+  position: absolute;
+  inset-inline-end: -1rem;
+  inset-block-start: -2rem;
+  color: color-mix(in srgb, var(--erp-color-brand-900) 8%, transparent);
+  font-size: clamp(9rem, 24vw, 19rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.not-found-panel {
+  position: relative;
+  width: min(100%, 40rem);
+  border: 1px solid color-mix(in srgb, var(--erp-color-border-subtle) 80%, white);
+  border-radius: var(--erp-radius-xl);
+  background: color-mix(in srgb, var(--erp-color-surface-panel) 86%, transparent);
+  box-shadow: var(--erp-shadow-md);
+  padding: clamp(var(--erp-space-5), 5vw, var(--erp-space-8));
+}
+
+.eyebrow {
+  margin: 0 0 var(--erp-space-2);
+  color: var(--erp-color-brand-600);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--erp-color-text-primary);
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 0.96;
+}
+
+p:last-of-type {
+  max-width: 32rem;
+  color: var(--erp-color-text-secondary);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.home-link {
+  display: inline-flex;
+  margin-top: var(--erp-space-3);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-brand-600);
+  color: var(--erp-color-text-inverse);
+  font-weight: 800;
+  padding: var(--erp-space-3) var(--erp-space-4);
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: var(--erp-color-brand-700);
+}

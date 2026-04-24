@@ -1,0 +1,116 @@
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+}
+
+.sidebar {
+  padding: var(--erp-space-5);
+  background: linear-gradient(180deg, var(--erp-color-brand-900), var(--erp-color-brand-700));
+  color: var(--erp-color-text-inverse);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--erp-space-3);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-color-accent-400);
+  color: var(--erp-color-brand-900);
+  font-weight: 800;
+}
+
+.brand small,
+.nav-icon {
+  display: block;
+  opacity: 0.72;
+}
+
+.nav-list {
+  display: grid;
+  gap: var(--erp-space-2);
+  margin-top: var(--erp-space-8);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--erp-space-3);
+  padding: var(--erp-space-3);
+  border-radius: var(--erp-radius-md);
+  text-decoration: none;
+}
+
+.nav-link-active,
+.nav-link:hover {
+  background: color-mix(in srgb, white 16%, transparent);
+}
+
+.content {
+  padding: var(--erp-space-6);
+}
+
+.user-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--erp-space-3);
+  margin-top: var(--erp-space-8);
+  border-top: 1px solid color-mix(in srgb, white 20%, transparent);
+  color: var(--erp-color-text-inverse);
+  padding-top: var(--erp-space-5);
+}
+
+.user-panel span {
+  font-weight: 900;
+}
+
+.user-panel small {
+  opacity: 0.72;
+}
+
+.logout-button {
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, white 28%, transparent);
+  border-radius: var(--erp-radius-md);
+  background: color-mix(in srgb, white 10%, transparent);
+  color: var(--erp-color-text-inverse);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: var(--erp-space-2) var(--erp-space-3);
+}
+
+.logout-button:hover,
+.logout-button:focus-visible {
+  background: var(--erp-color-accent-400);
+  color: var(--erp-color-brand-900);
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .nav-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .user-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,53 @@
+<main class="login-page">
+  <section class="login-story" aria-labelledby="login-title">
+    <p class="eyebrow">Secure ERP access</p>
+    <h1 id="login-title">Run the business from one calm command centre.</h1>
+    <p>
+      Sign in to continue to customers, inventory, sales, finance, and future workflow
+      approvals.
+    </p>
+
+    <div class="auth-roadmap" aria-label="Authentication roadmap">
+      <span>Now: demo credentials</span>
+      <span>Next: API sessions</span>
+      <span>Later: OAuth / OpenID Connect</span>
+    </div>
+  </section>
+
+  <section class="login-card" aria-label="Login form">
+    <div class="card-heading">
+      <span class="brand-mark">ERP</span>
+      <div>
+        <strong>Northwind Works</strong>
+        <small>Demo identity gateway</small>
+      </div>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <label>
+        Username
+        <input formControlName="username" autocomplete="username" />
+      </label>
+
+      <label>
+        Password
+        <input formControlName="password" type="password" autocomplete="current-password" />
+      </label>
+
+      @if (errorMessage()) {
+        <p class="error-message" role="alert">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Signing in...' : 'Sign in' }}
+      </button>
+    </form>
+
+    <div class="demo-hint">
+      <strong>Demo users</strong>
+      <span>admin / admin123</span>
+      <span>operations / ops123</span>
+    </div>
+  </section>
+</main>
+

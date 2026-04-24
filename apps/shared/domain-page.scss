@@ -1,0 +1,118 @@
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--erp-space-4);
+  padding: var(--erp-space-6);
+  border-radius: var(--erp-radius-xl);
+  background: linear-gradient(135deg, var(--erp-color-surface-panel), var(--erp-color-surface-raised));
+  box-shadow: var(--erp-shadow-md);
+}
+
+.eyebrow {
+  margin: 0 0 var(--erp-space-2);
+  color: var(--erp-color-brand-600);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+p {
+  max-width: 44rem;
+  color: var(--erp-color-text-secondary);
+}
+
+button {
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-brand-600);
+  color: var(--erp-color-text-inverse);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: var(--erp-space-3) var(--erp-space-4);
+}
+
+.crud-card {
+  margin-top: var(--erp-space-5);
+  overflow: hidden;
+  border: 1px solid var(--erp-color-border-subtle);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-color-surface-panel);
+}
+
+.card-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--erp-space-4);
+  padding: var(--erp-space-4);
+  border-bottom: 1px solid var(--erp-color-border-subtle);
+}
+
+input {
+  min-width: 16rem;
+  border: 1px solid var(--erp-color-border-strong);
+  border-radius: var(--erp-radius-md);
+  font: inherit;
+  padding: var(--erp-space-2) var(--erp-space-3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: var(--erp-space-3) var(--erp-space-4);
+  border-bottom: 1px solid var(--erp-color-border-subtle);
+  text-align: left;
+}
+
+th {
+  color: var(--erp-color-text-secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-flex;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-color-success-subtle);
+  color: var(--erp-color-success-strong);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: var(--erp-space-1) var(--erp-space-2);
+}
+
+.link-button {
+  margin-right: var(--erp-space-2);
+  background: transparent;
+  color: var(--erp-color-brand-600);
+  padding: 0;
+}
+
+@media (max-width: 760px) {
+  .page-header,
+  .card-toolbar {
+    flex-direction: column;
+  }
+
+  input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+

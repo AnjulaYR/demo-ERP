@@ -1,0 +1,42 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Financials</p>
+    <h1>Finance operations</h1>
+    <p>Manage accounts, payments, journal entries, receivables, and payables.</p>
+  </div>
+  <button type="button">Create journal</button>
+</section>
+
+<section class="crud-card">
+  <div class="card-toolbar">
+    <strong>Finance records</strong>
+    <input type="search" placeholder="Search finance" aria-label="Search finance" />
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Area</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (record of records; track record.id) {
+        <tr>
+          <td>{{ record.id }}</td>
+          <td>{{ record.name }}</td>
+          <td><span class="status">{{ record.status }}</span></td>
+          <td>{{ record.owner }}</td>
+          <td>
+            <button type="button" class="link-button">View</button>
+            <button type="button" class="link-button">Edit</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
+

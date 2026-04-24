@@ -1,0 +1,41 @@
+:root {
+  --erp-color-brand-600: #25635f;
+  --erp-color-brand-700: #164945;
+  --erp-color-brand-900: #0b2c2a;
+  --erp-color-accent-400: #e0b84d;
+
+  --erp-color-surface-canvas: #f7f4ed;
+  --erp-color-surface-panel: #ffffff;
+  --erp-color-surface-raised: #ece5d8;
+
+  --erp-color-text-primary: #151310;
+  --erp-color-text-secondary: #766f63;
+  --erp-color-text-inverse: #ffffff;
+
+  --erp-color-border-subtle: #ece5d8;
+  --erp-color-border-strong: #766f63;
+
+  --erp-color-success-subtle: #d9f2df;
+  --erp-color-success-strong: #17633a;
+  --erp-color-danger-subtle: #fde2dc;
+  --erp-color-danger-strong: #a23620;
+
+  --erp-font-family-sans: Aptos, 'Segoe UI', sans-serif;
+
+  --erp-space-1: 0.25rem;
+  --erp-space-2: 0.5rem;
+  --erp-space-3: 0.75rem;
+  --erp-space-4: 1rem;
+  --erp-space-5: 1.5rem;
+  --erp-space-6: 2rem;
+  --erp-space-8: 3rem;
+
+  --erp-radius-md: 0.75rem;
+  --erp-radius-lg: 1rem;
+  --erp-radius-xl: 1.5rem;
+  --erp-radius-pill: 999px;
+
+  --erp-shadow-md: 0 16px 40px rgb(21 19 16 / 10%);
+  --erp-shadow-lg: 0 28px 70px rgb(21 19 16 / 14%);
+}
+
