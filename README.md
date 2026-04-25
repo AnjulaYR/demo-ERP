@@ -18,10 +18,11 @@ This repository is the starting point for a demo ERP platform built with Angular
 
 ```bash
 npm install
-npm run start:shell
+npm run start:all
 ```
 
 Remote apps can be served independently on ports `4201` through `4204`.
+The `start:all` command runs the shell and all remotes in one terminal using `concurrently`.
 
 The local API runs on `http://localhost:3000` and is proxied from Angular through `/api`.
 
@@ -29,7 +30,7 @@ Backend startup requires Docker:
 
 ```bash
 npm run db:up
-npm run api:dev
+npm run start:all:with-api
 ```
 
 Demo login:

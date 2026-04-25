@@ -5,6 +5,9 @@
   "description": "Demo ERP system using Angular micro frontends, design systems, and design tokens.",
   "scripts": {
     "start": "ng serve shell",
+    "start:all": "concurrently -k -n shell,customers,inventory,sales,finance -c blue,green,yellow,magenta,cyan \"npm run start:shell\" \"npm run start:customers\" \"npm run start:inventory\" \"npm run start:sales\" \"npm run start:finance\"",
+    "start:all:with-api": "concurrently -k -n api,shell,customers,inventory,sales,finance -c white,blue,green,yellow,magenta,cyan \"npm run api:dev\" \"npm run start:shell\" \"npm run start:customers\" \"npm run start:inventory\" \"npm run start:sales\" \"npm run start:finance\"",
+    "stop": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$ports=3000,4200,4201,4202,4203,4204; foreach ($port in $ports) { Write-Host ('[stop] Releasing port ' + $port + '...'); Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Where-Object { $_.State -eq 'Listen' } | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue } }\"",
     "start:shell": "ng serve shell --port 4200",
     "start:customers": "ng serve customers --port 4201",
     "start:inventory": "ng serve inventory --port 4202",
@@ -27,6 +30,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@angular-architects/native-federation": "^20.0.0",
     "@angular/animations": "^20.0.0",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
@@ -34,7 +38,6 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@angular-architects/native-federation": "^20.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "es-module-shims": "^1.10.1",
@@ -53,6 +56,7 @@
     "@types/jasmine": "^5.1.0",
     "@types/node": "^22.10.5",
     "@types/pg": "^8.11.10",
+    "concurrently": "^9.2.1",
     "jasmine-core": "^5.7.0",
     "karma": "^6.4.0",
     "karma-chrome-launcher": "^3.2.0",
