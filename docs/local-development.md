@@ -13,6 +13,16 @@ The Angular shell and remotes run on separate ports:
 Start commands:
 
 ```bash
+npm run start:all
+```
+
+`npm run start:all` starts the shell and all remotes in one terminal using `concurrently`.
+
+Open `http://localhost:4200` after the shell and remotes finish compiling.
+
+Individual app commands:
+
+```bash
 npm run start:shell
 npm run start:customers
 npm run start:inventory
@@ -28,10 +38,10 @@ Docker is required for PostgreSQL.
 
 ```bash
 npm run db:up
-npm run api:dev
+npm run start:all:with-api
 ```
 
-The API runs at `http://localhost:3000`. Angular dev servers proxy `/api` to the API through `proxy.conf.json`.
+`npm run start:all:with-api` starts the API, shell, and remotes together. The API runs at `http://localhost:3000`. Angular dev servers proxy `/api` to the API through `proxy.conf.json`.
 
 ## Native Federation Notes
 
@@ -55,5 +65,4 @@ If the browser shows stale federation or MIME errors, hard refresh with a cache-
 http://localhost:4200/?fresh=1
 ```
 
-If dev servers hit Windows file locks while starting together, start them sequentially. OneDrive can briefly lock files in `node_modules` during parallel builds.
-
+If dev servers hit Windows file locks while starting together, stop everything with `npm run stop`, then start the individual apps one at a time with the `start:*` scripts. OneDrive can briefly lock files in `node_modules` during parallel builds.
