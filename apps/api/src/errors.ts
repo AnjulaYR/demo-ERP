@@ -19,14 +19,39 @@ export function errorHandler(
   response: Response,
   _next: NextFunction,
 ): void {
-  const statusCode = error instanceof HttpError ? error.statusCode : 500;
-  const message = error instanceof Error ? error.message : 'Unexpected API error';
+  const mappedError = mapError(error);
 
-  response.status(statusCode).json({
+  response.status(mappedError.statusCode).json({
     error: {
-      message,
-      statusCode,
+      message: mappedError.message,
+      statusCode: mappedError.statusCode,
     },
   });
 }
 
+function mapError(error: unknown): HttpError {
+  if (error instanceof HttpError) {
+    return error;
+  }
+
+  if (isPostgresError(error)) {
+    if (error.code === '23505') {
+      return new HttpError(409, 'A record with the same unique value already exists');
+    }
+
+    if (error.code === '22P02' || error.code === '23502') {
+      return new HttpError(400, 'The submitted data is not valid for this record');
+    }
+
+    if (error.code === '23503') {
+      return new HttpError(409, 'This record is linked to other ERP data');
+    }
+  }
+
+  const message = error instanceof Error ? error.message : 'Unexpected API error';
+  return new HttpError(500, message);
+}
+
+function isPostgresError(error: unknown): error is { code: string } {
+  return typeof error === 'object' && error !== null && 'code' in error;
+}

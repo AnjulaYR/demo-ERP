@@ -4,39 +4,77 @@
     <h1>Inventory control</h1>
     <p>Track products, warehouses, stock balances, and movements.</p>
   </div>
-  <button type="button">Create product</button>
+  <button type="button" (click)="resetForm()">Create product</button>
 </section>
 
 <section class="crud-card">
+  <form class="record-form" [formGroup]="form" (ngSubmit)="save()">
+    <label>
+      SKU
+      <input type="text" formControlName="sku" placeholder="SKU-019" />
+    </label>
+    <label>
+      Name
+      <input type="text" formControlName="name" placeholder="Product name" />
+    </label>
+    <label>
+      Reorder point
+      <input type="number" formControlName="reorderPoint" min="0" />
+    </label>
+    <label class="wide-field">
+      Description
+      <input type="text" formControlName="description" placeholder="Short product description" />
+    </label>
+    <div class="form-actions">
+      <button type="submit">{{ editingRecord ? 'Update product' : 'Create product' }}</button>
+      @if (editingRecord) {
+        <button type="button" class="secondary-button" (click)="resetForm()">Cancel</button>
+      }
+    </div>
+  </form>
+
   <div class="card-toolbar">
     <strong>Inventory records</strong>
-    <input type="search" placeholder="Search inventory" aria-label="Search inventory" />
+    @if ((state$ | async)?.loading) {
+      <span>Loading from PostgreSQL...</span>
+    }
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Location</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (record of records; track record.id) {
-        <tr>
-          <td>{{ record.id }}</td>
-          <td>{{ record.name }}</td>
-          <td><span class="status">{{ record.status }}</span></td>
-          <td>{{ record.owner }}</td>
-          <td>
-            <button type="button" class="link-button">View</button>
-            <button type="button" class="link-button">Edit</button>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</section>
+  @if (state$ | async; as state) {
+    @if (state.error) {
+      <p class="error-message">{{ state.error }}</p>
+    }
 
+    <table>
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Stock</th>
+          <th>Reorder point</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (record of state.items; track record.id) {
+          <tr>
+            <td>{{ record.sku }}</td>
+            <td>{{ record.name }}</td>
+            <td>{{ record.quantityOnHand }}</td>
+            <td>{{ record.reorderPoint }}</td>
+            <td><span class="status">{{ record.status }}</span></td>
+            <td>
+              <button type="button" class="link-button" (click)="edit(record)">Edit</button>
+              <button type="button" class="link-button danger-button" (click)="delete(record)">Delete</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6">No products yet.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>
