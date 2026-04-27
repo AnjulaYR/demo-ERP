@@ -18,6 +18,7 @@ apps/
 libs/
   design-tokens/       Brand, color, typography, spacing, radius, shadow tokens
   ui/                  Shared Angular components built on tokens
+  shared/api-client/   Reusable API resources, CRUD stores, and domain data services
   shared/models/       Cross-domain TypeScript models
   shared/shell-contract/ Remote registration and navigation contracts
   shared/util/         Cross-app utilities
@@ -38,9 +39,11 @@ Recommended remote boundaries:
 
 Design tokens are the source of truth for visual decisions. Shared UI components consume tokens through CSS custom properties, not hardcoded values. Product-specific screens should compose UI primitives rather than recreating visual rules.
 
-## Backend Assumption
+## Backend And Data Access
 
-Backend integration starts with a local PostgreSQL database and a small Node/Express API. The first frontend screens still use local placeholder rows, but the repo now has `/api` proxy configuration and a shared API client ready for gradual replacement.
+Backend integration starts with a local PostgreSQL database and a small Node/Express API. The local full-stack command starts PostgreSQL, the API, the shell, and all remotes together.
+
+Frontend screens should not call `HttpClient` directly. Domain screens should consume services from `libs/shared/api-client`, which wraps transport details behind generic CRUD resources and reusable loading/error state. Customers and Inventory now use this pattern for PostgreSQL-backed CRUD.
 
 ## Authentication Boundary
 
@@ -51,5 +54,5 @@ The shell owns login state and route protection. Authentication is currently moc
 1. Establish shell routing, app frame, and remote registration.
 2. Build token pipeline and basic UI primitives.
 3. Implement CRUD shell pattern: list, details, create, edit, delete confirmation.
-4. Add mock data services per domain.
-5. Replace mock adapters with backend API clients later.
+4. Connect priority domains to PostgreSQL through the shared API data layer.
+5. Expand API-backed CRUD across Sales, Finance, and authentication workflows.

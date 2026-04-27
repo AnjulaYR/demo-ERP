@@ -4,39 +4,74 @@
     <h1>Customers and suppliers</h1>
     <p>Manage customer, supplier, contact, and address records.</p>
   </div>
-  <button type="button">Create customer</button>
+  <button type="button" (click)="resetForm()">Create customer</button>
 </section>
 
 <section class="crud-card">
+  <form class="record-form" [formGroup]="form" (ngSubmit)="save()">
+    <label>
+      Code
+      <input type="text" formControlName="code" placeholder="CUS-1003" />
+    </label>
+    <label>
+      Name
+      <input type="text" formControlName="name" placeholder="Customer name" />
+    </label>
+    <label>
+      Type
+      <select formControlName="partyType">
+        <option value="customer">Customer</option>
+        <option value="supplier">Supplier</option>
+      </select>
+    </label>
+    <div class="form-actions">
+      <button type="submit">{{ editingRecord ? 'Update record' : 'Create record' }}</button>
+      @if (editingRecord) {
+        <button type="button" class="secondary-button" (click)="resetForm()">Cancel</button>
+      }
+    </div>
+  </form>
+
   <div class="card-toolbar">
     <strong>Records</strong>
-    <input type="search" placeholder="Search customers" aria-label="Search customers" />
+    @if ((state$ | async)?.loading) {
+      <span>Loading from PostgreSQL...</span>
+    }
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Owner</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (record of records; track record.id) {
-        <tr>
-          <td>{{ record.id }}</td>
-          <td>{{ record.name }}</td>
-          <td><span class="status">{{ record.status }}</span></td>
-          <td>{{ record.owner }}</td>
-          <td>
-            <button type="button" class="link-button">View</button>
-            <button type="button" class="link-button">Edit</button>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</section>
+  @if (state$ | async; as state) {
+    @if (state.error) {
+      <p class="error-message">{{ state.error }}</p>
+    }
 
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (record of state.items; track record.id) {
+          <tr>
+            <td>{{ record.code }}</td>
+            <td>{{ record.name }}</td>
+            <td>{{ record.partyType }}</td>
+            <td><span class="status">{{ record.status }}</span></td>
+            <td>
+              <button type="button" class="link-button" (click)="edit(record)">Edit</button>
+              <button type="button" class="link-button danger-button" (click)="delete(record)">Delete</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5">No customers or suppliers yet.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

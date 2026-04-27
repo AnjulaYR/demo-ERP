@@ -16,9 +16,15 @@ Start commands:
 npm run start:all
 ```
 
-`npm run start:all` starts the shell and all remotes in one terminal using `concurrently`.
+`npm run start:all` starts PostgreSQL, the API, the shell, and all remotes in one terminal using `concurrently`.
 
 Open `http://localhost:4200` after the shell and remotes finish compiling.
+
+If you only want the frontend apps without Docker/PostgreSQL:
+
+```bash
+npm run start:all:frontend
+```
 
 Individual app commands:
 
@@ -37,11 +43,12 @@ On Windows, if PowerShell blocks `npm`, use `npm.cmd`.
 Docker is required for PostgreSQL.
 
 ```bash
-npm run db:up
 npm run start:all:with-api
 ```
 
-`npm run start:all:with-api` starts the API, shell, and remotes together. The API runs at `http://localhost:3000`. Angular dev servers proxy `/api` to the API through `proxy.conf.json`.
+`npm run start:all:with-api` is an alias for `npm run start:all`. The API runs at `http://localhost:3000`. Angular dev servers proxy `/api` to the API through `proxy.conf.json`.
+
+PostgreSQL uses the named Docker volume `demo_erp_postgres_data`, so data entered through the ERP remains available after the container is stopped and started again.
 
 ## Native Federation Notes
 

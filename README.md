@@ -22,16 +22,17 @@ npm run start:all
 ```
 
 Remote apps can be served independently on ports `4201` through `4204`.
-The `start:all` command runs the shell and all remotes in one terminal using `concurrently`.
+The `start:all` command runs PostgreSQL, the API, the shell, and all remotes in one terminal using `concurrently`.
 
 The local API runs on `http://localhost:3000` and is proxied from Angular through `/api`.
 
-Backend startup requires Docker:
+`start:all:with-api` is kept as an alias for the full stack:
 
 ```bash
-npm run db:up
 npm run start:all:with-api
 ```
+
+PostgreSQL data is stored in the named Docker volume `demo_erp_postgres_data`, so entered data survives container stops and restarts.
 
 Demo login:
 

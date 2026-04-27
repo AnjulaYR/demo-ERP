@@ -63,6 +63,64 @@ input {
   padding: var(--erp-space-2) var(--erp-space-3);
 }
 
+select {
+  min-width: 12rem;
+  border: 1px solid var(--erp-color-border-strong);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-color-surface-panel);
+  font: inherit;
+  padding: var(--erp-space-2) var(--erp-space-3);
+}
+
+.record-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(10rem, 1fr));
+  gap: var(--erp-space-4);
+  padding: var(--erp-space-4);
+  border-bottom: 1px solid var(--erp-color-border-subtle);
+}
+
+.record-form label {
+  display: grid;
+  gap: var(--erp-space-2);
+  color: var(--erp-color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.record-form input,
+.record-form select {
+  min-width: 0;
+  width: 100%;
+  color: var(--erp-color-text-primary);
+  font-weight: 500;
+}
+
+.wide-field {
+  grid-column: span 2;
+}
+
+.form-actions {
+  display: flex;
+  align-items: end;
+  gap: var(--erp-space-2);
+}
+
+.secondary-button {
+  background: var(--erp-color-surface-raised);
+  color: var(--erp-color-brand-600);
+}
+
+.danger-button {
+  color: var(--erp-color-danger-strong);
+}
+
+.error-message {
+  margin: var(--erp-space-4);
+  color: var(--erp-color-danger-strong);
+  font-weight: 800;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -110,9 +168,16 @@ th {
     width: 100%;
   }
 
+  .record-form {
+    grid-template-columns: 1fr;
+  }
+
+  .wide-field {
+    grid-column: auto;
+  }
+
   table {
     display: block;
     overflow-x: auto;
   }
 }
-
